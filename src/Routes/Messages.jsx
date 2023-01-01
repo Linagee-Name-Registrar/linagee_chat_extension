@@ -1,8 +1,9 @@
 import '../App.css';
+import './Messages.css';
+import './Login.css';
 import { useState, useEffect, useReducer, useRef } from 'react';
 import logo from '../Assets/lnr_icon_white.png';
 import Search from '../Assets/new-message.png'
-import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -121,7 +122,7 @@ const Messages = () => {
 
 
     return (
-<div className="App">
+<div className="Messages">
 <AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, borderColor: 'red',float: 'top' }}>
         
         <Toolbar >

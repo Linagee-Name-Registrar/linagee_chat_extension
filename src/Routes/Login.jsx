@@ -9,6 +9,7 @@ import { styled } from '@mui/material/styles';
 import { useAuth } from '../Contexts/useAuth.js';
 import CryptoJS from 'crypto-js';
 import { login, useAuthState } from '../Contexts/AuthStore';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // import Gun from 'gun';
 
@@ -24,6 +25,7 @@ const Login = () => {
   const [auth, setAuth] = useState(false);
   const [address, setAddress] = useState();
   const [dtoken, setToken] = useState();
+  const [isloading, setLoading] = useState(false);
 
   const authState = useAuthState();
 
@@ -54,6 +56,7 @@ const Login = () => {
   }, [address])
 
   const loginFun = async () => {
+    setLoading(true);
     await login();
 
   }
@@ -155,10 +158,16 @@ const Login = () => {
       <h1 className="main-logo">
         Linagee Chat
       </h1>
-      <BootstrapButton variant="outlined" onClick={loginFun}  size="large">
-        Login
+      { !isloading && (
+              <BootstrapButton variant="outlined" onClick={loginFun}  size="large">
+              Login
+            </BootstrapButton>
 
-      </BootstrapButton>
+      )}
+      { isloading && (
+        <CircularProgress color="inherit" />
+      )}
+
       <h1>
 
       </h1>

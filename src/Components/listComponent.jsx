@@ -10,6 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../Routes/Login.css';
+import '../Routes/Messages.css';
 
 const ListContainer = (props) => {
   const { data } = props;
@@ -27,6 +28,7 @@ const ListContainer = (props) => {
         <div>
           <div onClick={goTo}>
           <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
+            <ListItemButton>
 
 <ListItemAvatar>
     <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
@@ -34,20 +36,22 @@ const ListContainer = (props) => {
 <ListItemText
     primary={product.primary}
     secondary={
-    <React.Fragment>
+    <React.Fragment className="list-text">
         <Typography
         sx={{ display: 'inline' }}
         component="span"
         variant="body2"
-        color="text.primary"
+        // color="text.primary"
         >
         to Scott, Alex, Jennifer
         </Typography>
-        {(product.secondary).slice(0, 10)+'...'}
+        {(product.secondary).slice(0, 14)+'...'}
     </React.Fragment>
     }
 />
+</ListItemButton>
 </ListItem>
+<Divider />
           </div>
         </div>
       ))}

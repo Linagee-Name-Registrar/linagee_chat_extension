@@ -2,6 +2,7 @@ import '../App.css';
 import React, { useState, useEffect } from 'react';
 import logo from '../Assets/lnr_icon_white.png';
 import './Login.css';
+import './Chat.css';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -25,7 +26,7 @@ import listData from '../Utils/msglist.json';
 
 const Chat = () => {
 
-  const [value, setValue] = React.useState('Controlled');
+  const [value, setValue] = React.useState();
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -48,7 +49,7 @@ const Chat = () => {
 
     return (
       <>
-      <div className="App">
+      <div className="Chat">
         <AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, borderColor: 'red',  float: 'top' }}>
         
         <Toolbar >
@@ -72,16 +73,17 @@ const Chat = () => {
         <div className="spacer"></div>
     
       <ChatContainer data={data}  />
+      <div className="spacer"/>
 
     <TextField
           id="outlined-multiline-flexible"
-          //label="Multiline"
+          placeholder="Linagee Chat"
           multiline
           sx={{width: "95%", marginBottom: '5px'}}
           maxRows={4}
           value={value}
           onChange={handleChange}
-          InputProps={{endAdornment: <Button>➡️</Button>}}
+          InputProps={{endAdornment: <Button><img src={"send2.png"}/></Button>}}
         />
 
         </div>

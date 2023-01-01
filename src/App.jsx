@@ -17,13 +17,31 @@ const darkTheme = createTheme({
   },
 });
 
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: "#a89be1",
+          contrastText: "#ffffff",
+      },
+      secondary: {
+          main: "#dabaee",
+          contrastText: "#ffffff",
+      },
+      success: {
+        main: "#9afa92",
+        contrastText: "ffffff"
+      },
+  },
+});
+
+
 
 
 
 
 function App() {
     return (
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={theme}>
         <CssBaseline />
         <MemoryRouter>
             <Routes>

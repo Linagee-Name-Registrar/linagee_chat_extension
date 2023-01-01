@@ -1,4 +1,5 @@
 import React from "react";
+import {useEffect, useRef, useState} from 'react';
 import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 import List from '@mui/material/List';
@@ -14,6 +15,14 @@ import '../Routes/Login.css';
 const ChatContainer = (props) => {
   const { data } = props;
   const navigate = useNavigate();
+  const bottomRef = useRef(null);
+
+
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+  }, [data]);
+
   
   const goTo = ()=>{
     navigate('/chat');
@@ -79,6 +88,7 @@ const ChatContainer = (props) => {
       </ListItem>
 
       ))}
+      <div ref={bottomRef} />
       </div>
     </>
   );

@@ -1,0 +1,94 @@
+[
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "bob.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "tom.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "derp.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "linagee.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },            {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "person.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "sarah.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },            {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "steph.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "lucy.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "cat.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "dog.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "1.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "summer.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },            {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "winter.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "spring.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "you"
+    },            {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "fall.og",
+        "secondary": " — Wish I could come, but I'm out of town this…",
+        "from": "me"
+    },
+    {
+        "avatar": "/static/images/avatar/2.jpg" ,
+        "primary": "name.og",
+        "secondary": "ugh i hate writing random words i hope this whole thing works and isnt a million lines iwsh me luck",
+        "from": "you"
+    }
+]

@@ -83,7 +83,7 @@ const Chat = () => {
           maxRows={4}
           value={value}
           onChange={handleChange}
-          InputProps={{endAdornment: <Button><img src={"send2.png"}/></Button>}}
+          InputProps={{endAdornment: <Button><img className="send-button" src={"send2.png"}/></Button>}}
         />
 
         </div>

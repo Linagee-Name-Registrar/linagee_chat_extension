@@ -21,10 +21,12 @@ import { FixedSizeList } from 'react-window';
 import Box from '@mui/material/Box';
 import listData from '../Utils/msglist.json';
 import ListContainer from '../Components/listComponent';
+import TextField from '@mui/material/TextField';
 // import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Gun from 'gun';
 import { useAuthState } from '../Contexts/AuthStore';
-
+import SearchContainer from '../Components/searchListComponent';
+import { Button } from '@mui/material';
 
 
 //------------GUN SETUP-----------------------------
@@ -119,6 +121,18 @@ const Messages = () => {
 
   // const messagesEndRef = useRef(null)
 
+  const [isSearching, setIsSearching] = useState(false);
+
+
+  const handleSearch = () =>{
+    setIsSearching(true);
+
+  }
+
+
+
+
+
 
 
     return (
@@ -128,12 +142,18 @@ const Messages = () => {
         <Toolbar >
         <img src={logo} alt="Logo" className="small-logo fixed"/>  
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {/* {address} */}
-            {/* mason.og */}
-            {(authState.me.get()).name || "Linagee.og"}
+            {!isSearching && 
+            (authState.me.get()).name || "Linagee.og"
+            }
+            {isSearching && (
+              <SearchContainer />
+            )}
+          
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
-          <img src={Search} alt="Logo" className="smaller-logo fixedR inverted"/> 
+          <Button onClick={handleSearch}>
+            <img src={Search} alt="Logo" className="smaller-logo fixedR inverted"/> 
+          </Button>
         </Toolbar>
          
         </AppBar>

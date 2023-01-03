@@ -15,6 +15,13 @@ import '../Routes/Messages.css';
 const ListContainer = (props) => {
   const { data } = props;
   const navigate = useNavigate();
+
+  const handleSetMessage = () => {
+    //fetch message id associated with people selected
+    //const selectedMessages = getMessages(value)
+    //messages.set(selectedMessages);
+    navigate('/chat');
+  }
   
   const goTo = ()=>{
     navigate('/chat');
@@ -26,6 +33,7 @@ const ListContainer = (props) => {
         <div className="spacer"></div>
           {data.map(product => (
         <div>
+          
           <div onClick={goTo}>
           <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
             <ListItemButton>

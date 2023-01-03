@@ -1,4 +1,4 @@
-import { createState, useState } from "@hookstate/core";
+import { hookstate, useHookstate, hookState } from "@hookstate/core";
 import { getName, getResolved } from '../Utils/Creds';
 import CryptoJS from 'crypto-js';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ const initialState = {
   me: {},
 };
 
-const authState = createState(initialState);
+const authState = hookstate(initialState);
 
 
 
@@ -114,7 +114,7 @@ export const logout = () => {
 
 // create react hook for consuming
 export const useAuthState = () => {
-  return useState(authState);
+  return useHookstate(authState);
 };
 
 /*global chrome*/

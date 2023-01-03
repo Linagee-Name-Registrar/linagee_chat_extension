@@ -38,13 +38,21 @@ const Chat = () => {
     navigate('/messages');
   }
 
+  //Replace with gundb fetch
+
   const fetchListData = () => Promise.resolve(() => listData);
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    //replace with gun db data -> from selected thread
     fetchListData().then((jsonData) => setData(jsonData));
   }, []);
+
+  const sendMessage = () =>{
+    //send(value)
+
+  }
 
 
     return (
@@ -83,7 +91,7 @@ const Chat = () => {
           maxRows={4}
           value={value}
           onChange={handleChange}
-          InputProps={{endAdornment: <Button><img className="send-button" src={"send2.png"}/></Button>}}
+          InputProps={{endAdornment: <Button onClick={sendMessage} ><img className="send-button" src={"send2.png"}/></Button>}}
         />
 
         </div>

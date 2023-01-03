@@ -124,6 +124,20 @@ const Messages = () => {
   const [isSearching, setIsSearching] = useState(false);
 
 
+  //Replace with gundb chat
+
+  const fetchListData = () => Promise.resolve(() => listData);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    //replace with gun db data -> from selected thread
+    fetchListData().then((jsonData) => setData(jsonData));
+  }, []);
+
+  
+
+
   const handleSearch = () =>{
     if(isSearching == false){
       setIsSearching(true);
@@ -170,7 +184,7 @@ const Messages = () => {
          
         </AppBar>
 
-<ListContainer data={listData} />
+            <ListContainer data={listData} />
 
 
       </div>

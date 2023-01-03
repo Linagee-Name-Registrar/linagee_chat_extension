@@ -16,6 +16,9 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { getThemeProps } from "@mui/system";
 import { alpha, styled, withTheme } from '@mui/material/styles';
+import { useHookstate } from '@hookstate/core';
+import store from '../Utils/store';
+import Button from '@mui/material/Button';
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -63,13 +66,29 @@ const CssTextField = styled(TextField)({
 const SearchContainer = () => {
   const navigate = useNavigate();
 
+  
+
+
   const [inputText, setInputText] = useState();
   const [data, setData] = useState([]);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(options[0]);
   const [options, setOptions] = useState(peopleData);
 
+  const { messages } = useHookstate(store);
 
+  const handleSetMessage = () => {
+    //fetch message id associated with people selected
+    //const selectedMessages = getMessages(value)
+    //messages.set(selectedMessages);
+    navigate('/chat');
+  }
 
+  // useEffect(() => {
+  //   if(value){
+  //     handleSetMessage()
+  //   }
+
+  // }, [value])
 
 
 
@@ -80,7 +99,7 @@ const SearchContainer = () => {
   }
 
   useEffect(() => {
-    if(inputText && inputText.length >0){
+    if(inputText && inputText.length > 0){
         var results = listFun(inputText);
         //var results = filterOptions(options, inputText);
         console.log("ress", results)
@@ -119,11 +138,16 @@ const SearchContainer = () => {
       id="free-solo-demo"
       // calling the freeSolo prop inside the Autocomplete component
       freeSolo
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
       style={{ width: 250 }}
       size="small" 
       options={options.map((option) => option.primary)}
       renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}
     />
+    <Button onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
     {/* <TextField 
         id="outlined-basic" 
         label="Outlined" 

@@ -125,7 +125,13 @@ const Messages = () => {
 
 
   const handleSearch = () =>{
-    setIsSearching(true);
+    if(isSearching == false){
+      setIsSearching(true);
+    }
+    if(isSearching == true){
+      setIsSearching(false);
+    }
+    
 
   }
 
@@ -143,7 +149,7 @@ const Messages = () => {
         <img src={logo} alt="Logo" className="small-logo fixed"/>  
           
             {!isSearching && 
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 5 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 5.5 }}>
             <>{(authState.me.get()).name}</>
             </Typography>
             }

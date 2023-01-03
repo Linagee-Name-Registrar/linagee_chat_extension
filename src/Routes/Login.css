@@ -29,7 +29,8 @@
   .smaller-logo {
     height: 35px;
     pointer-events: none;
-    margin-right: 5px
+    margin-right: 5px;
+    padding-right: 10px;
   }
 
   .input {

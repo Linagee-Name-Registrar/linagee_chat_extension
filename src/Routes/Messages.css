@@ -19,6 +19,8 @@
   }
   
 .search {
-    width: 80%;
+    margin-left: 55px;
+    margin-top: -1px;
     height: auto;
+    color: white;
 }

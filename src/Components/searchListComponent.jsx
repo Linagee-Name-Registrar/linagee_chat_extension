@@ -12,8 +12,10 @@ import Typography from '@mui/material/Typography';
 import '../Routes/Login.css';
 import '../Routes/Messages.css';
 import peopleData from '../Utils/people.json';
-import { TextField } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import { getThemeProps } from "@mui/system";
+import { alpha, styled, withTheme } from '@mui/material/styles';
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -32,12 +34,42 @@ function listFun(props) {
     )
 }
 
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'white',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'white',
+    color: 'white',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+      color: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: '#87ceeb',
+      color: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+      color: 'white',
+    },
+  },
+});
+
+
 
 const SearchContainer = () => {
   const navigate = useNavigate();
 
   const [inputText, setInputText] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState();
+  const [options, setOptions] = useState(peopleData);
+
+
+
 
 
 
@@ -48,8 +80,10 @@ const SearchContainer = () => {
   }
 
   useEffect(() => {
-    if(inputText){
+    if(inputText && inputText.length >0){
         var results = listFun(inputText);
+        //var results = filterOptions(options, inputText);
+        console.log("ress", results)
         setData(results);
     }
     
@@ -60,10 +94,37 @@ const SearchContainer = () => {
     navigate('/chat');
   }
 
+  
+
+  const filterOptions = (options, inputText) => {
+    let newOptions = [];
+    options.forEach((element) => {
+      if (
+        element.primary
+          .replace(",", "")
+          .toLowerCase()
+          .includes(inputText.toLowerCase())
+      )
+        newOptions.push(element);
+    });
+    return newOptions;
+
+  };
+
   return (
-    <>
     <div className="search">
-    <TextField 
+   
+
+    <Autocomplete
+      id="free-solo-demo"
+      // calling the freeSolo prop inside the Autocomplete component
+      freeSolo
+      style={{ width: 250 }}
+      size="small" 
+      options={options.map((option) => option.primary)}
+      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}
+    />
+    {/* <TextField 
         id="outlined-basic" 
         label="Outlined" 
         variant="outlined"
@@ -87,10 +148,10 @@ const SearchContainer = () => {
                       ))}
 
             </>
-        )}
+        )} */}
 
-      </div>
-    </>
+      
+    </ div>
   );
 };
 

@@ -147,7 +147,7 @@ const Login = () => {
     },
     '&:focus': {
       boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-      borderColor: '#bc8dff',
+      borderColor: '#87ceeb',
     },
   });
 

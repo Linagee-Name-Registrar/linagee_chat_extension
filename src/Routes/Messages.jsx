@@ -137,19 +137,25 @@ const Messages = () => {
 
     return (
 <div className="Messages">
-<AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, borderColor: 'red',float: 'top' }}>
+<AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, float: 'top' }}>
         
         <Toolbar >
         <img src={logo} alt="Logo" className="small-logo fixed"/>  
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          
             {!isSearching && 
-            (authState.me.get()).name || "Linagee.og"
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 5 }}>
+            <>{(authState.me.get()).name}</>
+            </Typography>
             }
             {isSearching && (
-              <SearchContainer />
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+              <SearchContainer className="search"/>
+              </Typography>
             )}
           
-          </Typography>
+          
+
+
           {/* <Button color="inherit">Login</Button> */}
           <Button onClick={handleSearch}>
             <img src={Search} alt="Logo" className="smaller-logo fixedR inverted"/> 

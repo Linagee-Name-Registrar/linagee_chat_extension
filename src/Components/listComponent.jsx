@@ -14,6 +14,7 @@ import '../Routes/Messages.css';
 
 const ListContainer = (props) => {
   const { data } = props;
+  console.log("data is", data)
   const navigate = useNavigate();
 
   const handleSetMessage = () => {

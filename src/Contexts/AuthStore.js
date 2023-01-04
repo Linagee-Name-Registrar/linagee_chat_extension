@@ -86,7 +86,7 @@ export const login = async () => {
     authState.set({
       ...initialState,
       // update me with data from network call
-      me: { address: (user.addr).toString(), name: (user.primary).toString() },
+      me: { address: (user.addr).toString(), name: (user.primary).toString(), ext: (user.ext).toString() },
       isLoggedIn: true,
     });
 
@@ -96,7 +96,7 @@ export const login = async () => {
     authState.set({
       ...initialState,
       // update me with data from network call
-      me: { address: (user.addr).toString() },
+      me: { address: (user.addr).toString(), ext: (user.ext).toString() },
       isLoggedIn: true,
     });
 

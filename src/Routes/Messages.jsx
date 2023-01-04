@@ -85,6 +85,8 @@ const Messages = () => {
   const navigate = useNavigate();
 
   const authState = useAuthState();
+  console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+  const userData = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
   //const { address } = useAuth()
   // const [currentUserName, setCurrentUserName] = useState('')
   // const [friendSearch, setFriendSearch] = useState()
@@ -169,7 +171,7 @@ const Messages = () => {
             }
             {isSearching && (
               <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
-              <SearchContainer className="search"/>
+              <SearchContainer data={userData} className="search"/>
               </Typography>
             )}
           

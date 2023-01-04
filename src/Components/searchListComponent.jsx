@@ -19,6 +19,7 @@ import { alpha, styled, withTheme } from '@mui/material/styles';
 import { useHookstate } from '@hookstate/core';
 import store from '../Utils/store';
 import Button from '@mui/material/Button';
+import { CreateConversation, GetConversations } from '../Utils/Conversations'
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -63,32 +64,32 @@ const CssTextField = styled(TextField)({
 
 
 
-const SearchContainer = () => {
+const SearchContainer = (props) => {
+  const { data } = props;
+  console.log("props is" , data)
+  //const loggedIn = true;
+  //const ext = "7f615e26-dc9a-4ace-bdc8-0cbb930b53ec"
+  //console.log("props are", loggedIn, ext )
   const navigate = useNavigate();
 
   
 
 
   const [inputText, setInputText] = useState();
-  const [data, setData] = useState([]);
-  const [value, setValue] = useState(options[0]);
-  const [options, setOptions] = useState(peopleData);
+  const [data2, setData] = useState([]);
+  const [options, setOptions] = useState([]);
+  const [personvalue, setValue] = useState();
+  
+
+  //console.log("options are", options)
 
   const { messages } = useHookstate(store);
 
-  const handleSetMessage = () => {
-    //fetch message id associated with people selected
-    //const selectedMessages = getMessages(value)
-    //messages.set(selectedMessages);
-    navigate('/chat');
-  }
 
-  // useEffect(() => {
-  //   if(value){
-  //     handleSetMessage()
-  //   }
+  useEffect(() => {
+    setOptions(peopleData)
 
-  // }, [value])
+  }, [])
 
 
 
@@ -112,6 +113,18 @@ const SearchContainer = () => {
   const goTo = ()=>{
     navigate('/chat');
   }
+
+  const handleSetMessage = async () => {
+    //fetch message id associated with people selected
+    //const selectedMessages = getMessages(value)
+    //messages.set(selectedMessages);
+    console.log("person value is", personvalue);
+    console.log("setting message in search list");
+    await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
+    await GetConversations(data.loggedIn, data.ext);
+    goTo();
+  }
+
 
   
 
@@ -138,11 +151,11 @@ const SearchContainer = () => {
       id="free-solo-demo"
       // calling the freeSolo prop inside the Autocomplete component
       freeSolo
-      value={value}
+      value={personvalue}
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      style={{ width: 250 }}
+      style={{ width: 200 }}
       size="small" 
       options={options.map((option) => option.primary)}
       renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}

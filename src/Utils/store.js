@@ -1,5 +1,4 @@
-import { hookstate } from '@hookstate/core'
-
+import { hookstate } from '@hookstate/core';
 
 
 const initialState = {

@@ -35,8 +35,8 @@ export async function GetConversations(loggedIn, ext){
     );
 
     if(getConvos.status == 200){
-    console.log('returning convos: ', (getConvos.data).toString())
-    return(getConvos.data)
+    console.log('returning convos: ', JSON.stringify(getConvos.data))
+    return(JSON.stringify(getConvos.data))
     }
     return
   }

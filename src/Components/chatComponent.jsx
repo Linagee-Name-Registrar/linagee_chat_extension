@@ -11,36 +11,77 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../Routes/Login.css';
+import { CreateConversation, GetConversations } from '../Utils/Conversations';
 
 const ChatContainer = (props) => {
   const { data } = props;
+  
   const navigate = useNavigate();
   const bottomRef = useRef(null);
 
 
+  const [mdata, setData] = useState([]);
+
+
+  const washData = (resp) =>{
+    console.log("washing chat")
+    console.log(typeof(resp));
+    console.log(JSON.parse(resp));
+    setData(JSON.parse(resp));
+
+
+
+  }
+
+
+  useEffect(async () => {
+    if(data.ext && data.loggedIn){
+      var conversationResp = await GetConversations(data.loggedIn, data.ext);
+      washData(conversationResp)
+      // var conjs = JSON.parse(JSON.stringfy(conversationResp))
+
+
+      // let tmpArray = []
+      // for (var i = 0; i < (conjs).length; i++) {
+      //   tmpArray.push(conjs[i])
+      // }
+
+      // setConversations(tmpArray);
+      // console.log("convos set to")
+      // console.log(conversations);
+      //console.log((conversations[0]).roomId)
+      
+    }
+    
+  }, []);
+
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
     bottomRef.current?.scrollIntoView({behavior: 'smooth'});
-  }, [data]);
+  }, [mdata]);
 
   
   const goTo = ()=>{
     navigate('/chat');
   }
 
+  
+
+  if(typeof(mdata) !== "undefined" && (mdata).length >0){
   return (
+    
     <><div className="test">
         <div className="spacer"></div>
-          {data.map(product => (
+          {mdata.map(product => (
 
           <ListItem alignItems="flex-start" component="div" >
     
-        {product.from == "me" ? (
+        {product.roomId == "me" ? (
           <>
           
         <ListItemText
         sx={{ textAlign: 'right', float: 'right', marginTop:'2px', marginBottom:'2px', marginLeft: '50px', marginRight: '7px'}}
-        primary={product.secondary}
+        primary={product.roomId}
         secondary={
           <React.Fragment>
             <Typography
@@ -68,7 +109,7 @@ const ChatContainer = (props) => {
 
       <ListItemText
       sx={{ marginTop:'2px', marginBottom:'2px',marginLeft: '7px', marginRight: '50px' }}
-      primary={product.secondary}
+      primary={product.roomId}
       secondary={
         <React.Fragment>
           <Typography
@@ -91,11 +132,10 @@ const ChatContainer = (props) => {
       <div ref={bottomRef} />
       </div>
     </>
-  );
+  )}
+  return(<div>None <div ref={bottomRef} /></div>)
+  
 };
 
-ChatContainer.propTypes = {
-  data: PropTypes.array.isRequired
-};
 
 export default ChatContainer;

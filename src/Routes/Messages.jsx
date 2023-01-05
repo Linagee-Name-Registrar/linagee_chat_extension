@@ -4,7 +4,7 @@ import './Login.css';
 import { useState, useEffect, useReducer, useRef } from 'react';
 import logo from '../Assets/lnr_icon_white.png';
 import Search from '../Assets/new-message.png'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
@@ -82,7 +82,7 @@ let duplicateChatArray = []
 
 
 const Messages = () => {
-  const navigate = useNavigate();
+  
 
   const authState = useAuthState();
   console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
@@ -151,6 +151,38 @@ const Messages = () => {
 
   }
 
+  const [go, setGo]=React.useState(false);
+
+  
+  
+  const goTo = (path)=>{
+    setGo(true)
+    
+  }
+  const location = useLocation();
+
+  useEffect(()=> {
+    if(go){
+      console.log("location", location);
+      
+      navigate('../home', { replace: true });
+      console.log("location", location);
+    }
+  },[go]);
+
+  const navigate = useNavigate();
+
+  const goTo2 = ()=>{
+    console.log("jome loctohome", location)
+    navigate('/home', { replace: true });
+  }
+
+  const goTo3 = ()=>{
+    console.log("jome locto chat", location)
+    navigate('/chat', { replace: true });
+  }
+
+
 
 
 
@@ -159,7 +191,10 @@ const Messages = () => {
 
     return (
 <div className="Messages">
+
 <AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, float: 'top' }}>
+<div onClick={goTo2}> goto</div>
+<div onClick={goTo3}> goto3</div>
         
         <Toolbar >
         <img src={logo} alt="Logo" className="small-logo fixed"/>  
@@ -185,11 +220,18 @@ const Messages = () => {
         </Toolbar>
          
         </AppBar>
+        <div className="spacer"></div>
+        
 
-            <ListContainer data={listData} />
+            <ListContainer data={userData} />
+
+
+            <div className="spacer"></div>
 
 
       </div>
       )
   };
 export default Messages;
+
+/*global chrome*/

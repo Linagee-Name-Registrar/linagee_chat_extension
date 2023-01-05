@@ -21,40 +21,56 @@ import { FixedSizeList } from 'react-window';
 import Button from '@mui/material/Button';
 import ChatContainer from '../Components/chatComponent';
 import listData from '../Utils/msglist.json';
+import { useAuthState } from '../Contexts/AuthStore';
 
 
 
 const Chat = () => {
 
-  const [value, setValue] = React.useState();
+  const authState = useAuthState();
+  console.log("chat authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+  const userData = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
+
+  const [value, setValue] = useState();
+  //const [data, setData] = useState([]);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
+  const [go, setGo]=React.useState(false);
+
   const navigate = useNavigate();
   
-  const goTo = ()=>{
-    navigate('/messages');
+  const goTo = (path)=>{
+    setGo(true)
+    
   }
+  
+
+  useEffect(()=> {
+    if(go){
+      navigate('/home');
+    }
+  },[go])
 
   //Replace with gundb fetch
 
-  const fetchListData = () => Promise.resolve(() => listData);
+  // const fetchListData = () => Promise.resolve(() => listData);
 
-  const [data, setData] = useState([]);
+  
 
-  useEffect(() => {
-    //replace with gun db data -> from selected thread
-    fetchListData().then((jsonData) => setData(jsonData));
-  }, []);
+  // useEffect(() => {
+  //   //replace with gun db data -> from selected thread
+  //   fetchListData().then((jsonData) => setData(jsonData));
+  // }, []);
 
   const sendMessage = () =>{
     //send(value)
 
   }
 
-
+  
     return (
       <>
       <div className="Chat">
@@ -80,7 +96,7 @@ const Chat = () => {
         </AppBar>
         <div className="spacer"></div>
     
-      <ChatContainer data={data}  />
+      {/* <ChatContainer data={userData}  /> */}
       <div className="spacer"/>
 
     <TextField
@@ -93,6 +109,7 @@ const Chat = () => {
           onChange={handleChange}
           InputProps={{endAdornment: <Button onClick={sendMessage} ><img className="send-button" src={"send2.png"}/></Button>}}
         />
+        <button onClick={goTo}>home</button>
 
         </div>
         </>

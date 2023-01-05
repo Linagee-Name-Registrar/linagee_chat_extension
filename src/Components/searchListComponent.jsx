@@ -19,7 +19,7 @@ import { alpha, styled, withTheme } from '@mui/material/styles';
 import { useHookstate } from '@hookstate/core';
 import store from '../Utils/store';
 import Button from '@mui/material/Button';
-import { CreateConversation, GetConversations } from '../Utils/Conversations'
+import { CreateConversation, GetConversations } from '../Utils/Conversations';
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -121,7 +121,7 @@ const SearchContainer = (props) => {
     console.log("person value is", personvalue);
     console.log("setting message in search list");
     await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
-    await GetConversations(data.loggedIn, data.ext);
+    //await GetConversations(data.loggedIn, data.ext);
     goTo();
   }
 
@@ -155,10 +155,10 @@ const SearchContainer = (props) => {
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      style={{ width: 200 }}
+      style={{ width: 125 }}
       size="small" 
       options={options.map((option) => option.primary)}
-      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}
+      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 125, height: 35 }}/>}
     />
     <Button onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
     {/* <TextField 

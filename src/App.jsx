@@ -50,7 +50,7 @@ function App() {
                 <Route path="/" element={<Login/>} /> 
 
                 {/* Authenticated */}
-                {/* <Route path="/home" element={<Home/>} /> */}
+                <Route path="/home" element={<Home/>} /> 
                 <Route path="/messages" element={<Messages />} />
                 <Route path="/chat" element={<Chat />} />
             {/* </AuthProvider> */}

@@ -19,3 +19,24 @@
     height: 15px;
     width: 15px;
   }
+
+  .tosend {
+    width: 100%;
+    height: auto;
+    position: absolute;
+
+    bottom: 0;
+  
+  }
+
+  .chat {
+   
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    position: absolute;
+    bottom: 0;
+    margin-top: 50px;
+    border: solid red 2px;
+
+  }

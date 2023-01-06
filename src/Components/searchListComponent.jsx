@@ -137,9 +137,12 @@ const SearchContainer = () => {
     //messages.set(selectedMessages);
     console.log("person value is", personvalue);
     console.log("setting message in search list");
-    await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
-    //await GetConversations(data.loggedIn, data.ext);
-    goTo();
+    if(personvalue){
+      await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
+      //await GetConversations(data.loggedIn, data.ext);
+      goTo();
+    }
+
   }
 
 
@@ -175,9 +178,9 @@ const SearchContainer = () => {
       style={{ width: 125 }}
       size="small" 
       options={options.map((option) => option.primary)}
-      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 125, height: 35 }}/>}
+      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}
     />
-    <Button style={{ width: 35, height: 35 }} onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
+    <Button style={{ width: 40, height: 35 }} onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
     {/* <TextField 
         id="outlined-basic" 
         label="Outlined" 

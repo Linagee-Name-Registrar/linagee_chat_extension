@@ -28,6 +28,7 @@
 
   .smaller-logo {
     height: 35px;
+    width: 40px;
     pointer-events: none;
     margin-right: 5px;
     padding-right: 10px;

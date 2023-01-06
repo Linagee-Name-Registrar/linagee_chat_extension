@@ -185,9 +185,10 @@ const ListContainer = () => {
     var nameArray = [];
     var prepped = JSON.parse(JSON.stringify(userRef));
     for (var i = 0; i < (prepped).length; i++) {
-      if(addr != (prepped[i]).addr)
+      if(addr.toString() !== ((prepped[i]).addr).toString()){
           addrArray.push((prepped[i]).addr);
           nameArray.push((prepped[i]).primary)
+      }
         }
     return({addr: addrArray, primary: nameArray })
   }
@@ -210,7 +211,7 @@ const ListContainer = () => {
   </ListItemAvatar>
   <ListItemText
   //primary={userReference.toString()}
-  primary={(((getChatters(userReference)).primary).toString()).slice(0, 14)+'...'}
+  primary={(((getChatters(userReference)).primary).toString()).slice(0, 14)}
   //primary={product}
   secondary={
   <React.Fragment className="list-text">

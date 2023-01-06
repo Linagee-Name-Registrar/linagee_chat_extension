@@ -11,10 +11,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import '../Routes/Login.css';
+import '../Routes/Chat.css';
 import { CreateConversation, GetConversations } from '../Utils/Conversations';
 
-const ChatContainer = (props) => {
-  const { data } = props;
+const ChatContainer = () => {
+  //const { data } = props;
   
   const navigate = useNavigate();
   const bottomRef = useRef(null);
@@ -23,37 +24,37 @@ const ChatContainer = (props) => {
   const [mdata, setData] = useState([]);
 
 
-  const washData = (resp) =>{
-    console.log("washing chat")
-    console.log(typeof(resp));
-    console.log(JSON.parse(resp));
-    setData(JSON.parse(resp));
+  // const washData = (resp) =>{
+  //   console.log("washing chat")
+  //   console.log(typeof(resp));
+  //   console.log(JSON.parse(resp));
+  //   setData(JSON.parse(resp));
 
 
 
-  }
+  // }
 
 
-  useEffect(async () => {
-    if(data.ext && data.loggedIn){
-      var conversationResp = await GetConversations(data.loggedIn, data.ext);
-      washData(conversationResp)
-      // var conjs = JSON.parse(JSON.stringfy(conversationResp))
+  // useEffect(async () => {
+  //   if(data.ext && data.loggedIn){
+  //     var conversationResp = await GetConversations(data.loggedIn, data.ext);
+  //     washData(conversationResp)
+  //     // var conjs = JSON.parse(JSON.stringfy(conversationResp))
 
 
-      // let tmpArray = []
-      // for (var i = 0; i < (conjs).length; i++) {
-      //   tmpArray.push(conjs[i])
-      // }
+  //     // let tmpArray = []
+  //     // for (var i = 0; i < (conjs).length; i++) {
+  //     //   tmpArray.push(conjs[i])
+  //     // }
 
-      // setConversations(tmpArray);
-      // console.log("convos set to")
-      // console.log(conversations);
-      //console.log((conversations[0]).roomId)
+  //     // setConversations(tmpArray);
+  //     // console.log("convos set to")
+  //     // console.log(conversations);
+  //     //console.log((conversations[0]).roomId)
       
-    }
+  //   }
     
-  }, []);
+  //}, []);
 
   useEffect(() => {
     // 👇️ scroll to bottom every time messages change
@@ -70,7 +71,7 @@ const ChatContainer = (props) => {
   if(typeof(mdata) !== "undefined" && (mdata).length >0){
   return (
     
-    <><div className="test">
+    <><div className="chat">
         <div className="spacer"></div>
           {mdata.map(product => (
 
@@ -133,7 +134,7 @@ const ChatContainer = (props) => {
       </div>
     </>
   )}
-  return(<div>None <div ref={bottomRef} /></div>)
+  return(<div className="chat">None <div ref={bottomRef} /></div>)
   
 };
 

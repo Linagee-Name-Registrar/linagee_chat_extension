@@ -222,8 +222,8 @@ const Messages = () => {
             </Typography>
             }
             {isSearching && (
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
-              <SearchContainer className="search"/>
+              <Typography variant="h6" component="div" sx={{ width: '100%', flexGrow: 1}}>
+              <SearchContainer  sx={{ width: '100%', flexGrow: 1}} className="search"/>
               </Typography>
             )}
           
@@ -231,7 +231,7 @@ const Messages = () => {
 
 
           {/* <Button color="inherit">Login</Button> */}
-          <Button onClick={handleSearch}>
+          <Button style={{ width: 35, height: 35 }} onClick={handleSearch}>
             <img src={Search} alt="Logo" className="smaller-logo fixedR inverted"/> 
           </Button>
         </Toolbar>

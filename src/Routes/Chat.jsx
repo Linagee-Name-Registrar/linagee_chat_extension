@@ -94,22 +94,24 @@ const Chat = () => {
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
         </AppBar>
-        <div className="spacer"></div>
+       
     
-      {/* <ChatContainer data={userData}  /> */}
-      <div className="spacer"/>
+      <ChatContainer />
 
+  
+      <div className="tosend">
     <TextField
+          sx={{ width: '95%', marginBottom: '5px', float: 'bottom' }}
           id="outlined-multiline-flexible"
           placeholder="Linagee Chat"
           multiline
-          sx={{width: "95%", marginBottom: '5px'}}
           maxRows={4}
           value={value}
           onChange={handleChange}
           InputProps={{endAdornment: <Button onClick={sendMessage} ><img className="send-button" src={"send2.png"}/></Button>}}
         />
-        <button onClick={goTo}>home</button>
+        </div>
+    
 
         </div>
         </>

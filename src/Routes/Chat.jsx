@@ -22,18 +22,17 @@ import Button from '@mui/material/Button';
 import ChatContainer from '../Components/chatComponent';
 import listData from '../Utils/msglist.json';
 import { useAuthState } from '../Contexts/AuthStore';
-
+import { useMesState, setMes } from '../Contexts/MessageStore';
 
 
 const Chat = () => {
 
-  const authState = useAuthState();
-  console.log("chat authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
-  const userData = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
-
+  
   const [value, setValue] = useState();
   //const [data, setData] = useState([]);
-
+  const [rec, setRec] = useState('linagee.og');
+  const [user, setUserData] = useState();
+  
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -41,6 +40,50 @@ const Chat = () => {
   const [go, setGo]=React.useState(false);
 
   const navigate = useNavigate();
+
+  const messageState = useMesState();
+  console.log("chat authstate is", messageState.roomId.get(), messageState.rec.get());
+
+  const authState = useAuthState();
+  console.log("chat authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+  const userData = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
+
+
+  
+  useEffect(() => {
+
+    var log = authState.isLoggedIn.get()
+
+    if(log){
+      var userda = {loggedIn: log, ext: ((authState.me.get()).ext).toString(), addr: ((authState.me.get()).address).toString()}
+      console.log("use effect yuser", userda);
+      setUserData(userda)
+      //setConversations(['hi', 'yo'])
+    }
+
+  }, [authState])
+
+  useEffect(() => {
+
+    var logr = messageState.rec.get()
+
+    if(logr){
+      var mesda = (messageState.rec.get()).toString()
+
+      setRec(mesda)
+      //setConversations(['hi', 'yo'])
+    }
+
+  }, [messageState])
+
+
+
+
+
+
+
+
+
   
   const goTo = (path)=>{
     setGo(true)
@@ -50,7 +93,7 @@ const Chat = () => {
 
   useEffect(()=> {
     if(go){
-      navigate('/home');
+      navigate('/messages');
     }
   },[go])
 
@@ -89,7 +132,7 @@ const Chat = () => {
 
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            bob.og
+            {rec}
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
         </Toolbar>

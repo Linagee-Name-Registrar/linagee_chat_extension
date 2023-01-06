@@ -13,15 +13,47 @@ import Typography from '@mui/material/Typography';
 import '../Routes/Login.css';
 import '../Routes/Chat.css';
 import { CreateConversation, GetConversations } from '../Utils/Conversations';
+import listData from '../Utils/msglist.json';
+import { useMesState, setMes } from '../Contexts/MessageStore';
+import { useAuthState } from '../Contexts/AuthStore';
+
 
 const ChatContainer = () => {
   //const { data } = props;
   
   const navigate = useNavigate();
+
+  const [user, setUserData] = useState();
+  
+
+  const authState = useAuthState();
+  const messageState = useMesState();
+  
+  //console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+
+
+  useEffect(() => {
+
+    var log = authState.isLoggedIn.get()
+
+    if(log){
+      var userda = {loggedIn: log, ext: ((authState.me.get()).ext).toString(), addr: ((authState.me.get()).address).toString()}
+      console.log("use effect yuser", userda);
+      setUserData(userda)
+      //setConversations(['hi', 'yo'])
+    }
+
+
+  }, [authState])
+
   const bottomRef = useRef(null);
 
 
-  const [mdata, setData] = useState([]);
+  const [mdata, setData] = useState();
+
+  useEffect(() =>{
+    setData(listData)
+  })
 
 
   // const washData = (resp) =>{
@@ -68,21 +100,25 @@ const ChatContainer = () => {
 
   
 
-  if(typeof(mdata) !== "undefined" && (mdata).length >0){
+  
   return (
     
-    <><div className="chat">
+        <>
+
+{mdata &&(
+    <div className="chats">
         <div className="spacer"></div>
           {mdata.map(product => (
 
           <ListItem alignItems="flex-start" component="div" >
     
-        {product.roomId == "me" ? (
+        {product.from == "me" ? (
           <>
           
         <ListItemText
+        className="list-text"
         sx={{ textAlign: 'right', float: 'right', marginTop:'2px', marginBottom:'2px', marginLeft: '50px', marginRight: '7px'}}
-        primary={product.roomId}
+        primary={product.secondary}
         secondary={
           <React.Fragment>
             <Typography
@@ -91,14 +127,14 @@ const ChatContainer = () => {
               variant="subtitle2"
               color="text.secondary"
             >
-              11:12 am
+              {product.from} 11:12 am
             </Typography>
           </React.Fragment>
         }
         
       />
 
-          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+          <Avatar sx={{ bgColor: '#87ceeb' }} >{(product.from).slice(0, 1)}</Avatar>
 
       </>
         
@@ -106,11 +142,11 @@ const ChatContainer = () => {
       <>        
 
 
-      <Avatar sx={{marginRight: '3px', padding: '3px'}} alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+      <Avatar sx={{ bgColor: '#87ceeb', marginRight: '3px', padding: '3px' }} >{(product.from).slice(0, 1)}</Avatar>
 
       <ListItemText
       sx={{ marginTop:'2px', marginBottom:'2px',marginLeft: '7px', marginRight: '50px' }}
-      primary={product.roomId}
+      primary={product.secondary}
       secondary={
         <React.Fragment>
           <Typography
@@ -119,7 +155,7 @@ const ChatContainer = () => {
             variant="subtitle2"
             color="text.secondary"
           >
-            11:12 am
+            {product.from} 11:12 am
           </Typography>
         </React.Fragment>
       }
@@ -132,9 +168,10 @@ const ChatContainer = () => {
       ))}
       <div ref={bottomRef} />
       </div>
+)}
     </>
-  )}
-  return(<div className="chat">None <div ref={bottomRef} /></div>)
+  )
+
   
 };
 

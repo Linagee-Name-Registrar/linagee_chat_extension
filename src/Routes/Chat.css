@@ -1,18 +1,24 @@
 .Chat {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: calc(10px + 2vmin);
+    
 
   }
+
+  .list-text{
+    color: rgb(69, 66, 66);
+  }
+  
 
 
   .send-button {
@@ -22,21 +28,21 @@
 
   .tosend {
     width: 100%;
-    height: auto;
-    position: absolute;
-
+    flex: 0 1 auto;
     bottom: 0;
+
   
   }
 
-  .chat {
-   
+  .chats {
+    
+    width: 100%;
+    /* flex: 1 1 auto; */
+
     width: 100%;
     height: auto;
     overflow-y: scroll;
-    position: absolute;
-    bottom: 0;
+    float: top;
     margin-top: 50px;
-    border: solid red 2px;
-
+  
   }

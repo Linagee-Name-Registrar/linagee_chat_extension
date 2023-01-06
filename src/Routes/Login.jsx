@@ -31,7 +31,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (authState.isLoggedIn.value) {
-      navigate("/home");
+      navigate("/messages");
     }
     // eslint-disable-next-line
   }, [authState.isLoggedIn.value]);

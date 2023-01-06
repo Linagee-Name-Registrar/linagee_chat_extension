@@ -13,6 +13,7 @@ import '../Routes/Login.css';
 import '../Routes/Messages.css';
 import { CreateConversation, GetConversations } from '../Utils/Conversations';
 import { useAuthState } from '../Contexts/AuthStore';
+import { useMesState, setMes } from '../Contexts/MessageStore';
 import axios from 'axios';
 
 const ListContainer = () => {
@@ -24,11 +25,20 @@ const ListContainer = () => {
   const [user, setUserData] = useState();
   const [conversations, setConversations] = useState();
   const [convoResp, setConvoResp] = useState();
+  const [mstatus, setmStatus] = useState(false)
   
 
   const authState = useAuthState();
   
   //console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+
+  const goTo = (roomId, userReference) =>{
+    console.log("clickedgoto");
+    var rec = ((getChatters(userReference)).primary).toString()
+    console.log("trying to route....");
+    setMes(roomId, rec);
+    navigate('/chat');
+  }
 
 
   useEffect(() => {
@@ -152,10 +162,6 @@ const ListContainer = () => {
     navigate('/chat');
   }
   
-  const goTo = ()=>{
-    console.log("trying to route....");
-    navigate('/home');
-  }
 
   
   useEffect( () => {
@@ -202,9 +208,9 @@ const ListContainer = () => {
       {conversations.map(({ roomId, roomName, userReference }) => (
         // <p key={roomId}>Coffee type {roomId} in a {roomName} size.</p>
         <div>
-        <div key={roomId} onClick={goTo}>
+        <div key={roomId} >
         <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
-          <ListItemButton>
+          <ListItemButton onClick={() => goTo(roomId, userReference)}>
   
   <ListItemAvatar>
   <Avatar alt="Travis Howard"/>

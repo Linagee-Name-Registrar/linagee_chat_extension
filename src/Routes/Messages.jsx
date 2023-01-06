@@ -174,28 +174,9 @@ const Messages = () => {
     setGo(true)
     
   }
-  const location = useLocation();
 
-  useEffect(()=> {
-    if(go){
-      console.log("location", location);
-      
-      navigate('../home', { replace: true });
-      console.log("location", location);
-    }
-  },[go]);
 
   const navigate = useNavigate();
-
-  const goTo2 = ()=>{
-    console.log("jome loctohome", location)
-    navigate('/home', { replace: true });
-  }
-
-  const goTo3 = ()=>{
-    console.log("jome locto chat", location)
-    navigate('/chat', { replace: true });
-  }
 
 
 

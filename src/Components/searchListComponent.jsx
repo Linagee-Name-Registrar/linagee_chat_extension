@@ -175,10 +175,10 @@ const SearchContainer = () => {
       onChange={(event, newValue) => {
         setValue(newValue);
       }}
-      style={{ width: 125 }}
+      style={{ width: 175 }}
       size="small" 
       options={options.map((option) => option.primary)}
-      renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 250, height: 35 }}/>}
+      renderInput={(params) => <CssTextField {...params} margin="dense" label="Search" size="small" style={{ width: 175, height: 30 }}/>}
     />
     <Button style={{ width: 40, height: 35 }} onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
     {/* <TextField 

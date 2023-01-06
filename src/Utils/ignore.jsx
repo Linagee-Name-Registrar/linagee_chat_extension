@@ -1,41 +1,61 @@
+<div className="chats">
+<div className="spacer"></div>
+  {mdata.map(product => (
 
-      <div className="spacer"></div>
-      
-      {(conversations.convos).map(product => (
-        
-    <div>
-      prodf
-      {product}
-      <div onClick={goTo}>
-      <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
-        <ListItemButton>
+  <ListItem alignItems="flex-start" component="div" >
 
-<ListItemAvatar>
-<Avatar alt="Travis Howard"/>
-</ListItemAvatar>
+{product.roomId == "me" ? (
+  <>
+  
 <ListItemText
-primary={((product.userReference)[1]).primary}
-//primary={product}
+sx={{ textAlign: 'right', float: 'right', marginTop:'2px', marginBottom:'2px', marginLeft: '50px', marginRight: '7px'}}
+primary={product.roomId}
 secondary={
-<React.Fragment className="list-text">
+  <React.Fragment>
     <Typography
+      sx={{ display: 'inline' }}
+      component="span"
+      variant="subtitle2"
+      color="text.secondary"
+    >
+      11:12 am
+    </Typography>
+  </React.Fragment>
+}
+
+/>
+
+  <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+
+</>
+
+) : (
+<>        
+
+
+<Avatar sx={{marginRight: '3px', padding: '3px'}} alt="Travis Howard" src="/static/images/avatar/2.jpg" />
+
+<ListItemText
+sx={{ marginTop:'2px', marginBottom:'2px',marginLeft: '7px', marginRight: '50px' }}
+primary={product.roomId}
+secondary={
+<React.Fragment>
+  <Typography
     sx={{ display: 'inline' }}
     component="span"
-    variant="body2"
-    // color="text.primary"
-    >
-    {(((product.userReference)[1]).addr).slice(0, 21)+'...'}
-    </Typography>
-    
-    {/* {(product.secondary).slice(0, 14)+'...'} */}
+    variant="subtitle2"
+    color="text.secondary"
+  >
+    11:12 am
+  </Typography>
 </React.Fragment>
 }
-/>
-</ListItemButton>
+/></>
+)}
+
+
 </ListItem>
-<Divider />
-      </div>
-    </div>
-  ))}
-  
-  
+
+))}
+<div ref={bottomRef} />
+</div>

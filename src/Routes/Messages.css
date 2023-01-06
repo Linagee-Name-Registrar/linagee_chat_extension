@@ -23,6 +23,9 @@
     margin-top: -1px;
     height: auto;
     color: white;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .test {

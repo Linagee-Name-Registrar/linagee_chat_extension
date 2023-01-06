@@ -82,11 +82,26 @@ let duplicateChatArray = []
 
 
 const Messages = () => {
+
+  const [user, setUserData] = useState();
+  const [name, setName] = useState("chat.og")
   
 
   const authState = useAuthState();
-  console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
-  const userData = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
+  console.log("messages authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext, (authState.me.get()).name);
+
+
+  useEffect(() => {
+    if(authState){
+      var userda = {loggedIn: authState.isLoggedIn.get(),primary: (authState.me.get()).name}
+      console.log("use effect yuser", userda);
+      setUserData(userda);
+      setName(userda.primary)
+    }
+
+  }, [authState])
+
+  
   //const { address } = useAuth()
   // const [currentUserName, setCurrentUserName] = useState('')
   // const [friendSearch, setFriendSearch] = useState()
@@ -128,14 +143,14 @@ const Messages = () => {
 
   //Replace with gundb chat
 
-  const fetchListData = () => Promise.resolve(() => listData);
+  // const fetchListData = () => Promise.resolve(() => listData);
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
-  useEffect(() => {
-    //replace with gun db data -> from selected thread
-    fetchListData().then((jsonData) => setData(jsonData));
-  }, []);
+  // useEffect(() => {
+  //   //replace with gun db data -> from selected thread
+  //   fetchListData().then((jsonData) => setData(jsonData));
+  // }, []);
 
   
 
@@ -190,23 +205,25 @@ const Messages = () => {
 
 
     return (
+      
 <div className="Messages">
 
+
+
 <AppBar sx={{ height:'50px', width: '100%', flexGrow: 1, float: 'top' }}>
-<div onClick={goTo2}> goto</div>
-<div onClick={goTo3}> goto3</div>
+
         
         <Toolbar >
         <img src={logo} alt="Logo" className="small-logo fixed"/>  
           
             {!isSearching && 
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, marginLeft: 5.5 }}>
-            <>{(authState.me.get()).name}</>
+            {name}
             </Typography>
             }
             {isSearching && (
               <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
-              <SearchContainer data={userData} className="search"/>
+              <SearchContainer className="search"/>
               </Typography>
             )}
           
@@ -223,13 +240,16 @@ const Messages = () => {
         <div className="spacer"></div>
         
 
-            <ListContainer data={userData} />
+            <ListContainer />
 
 
             <div className="spacer"></div>
 
 
       </div>
+      
+
+
       )
   };
 export default Messages;

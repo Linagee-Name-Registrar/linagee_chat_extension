@@ -17,22 +17,29 @@ export async function GetConversations(loggedIn, ext){
 
     if(!loggedIn){
         //navigate("/signin");
-        logout();
+        //logout();
         return
+    }
+    if(!ext){
+      //navigate("/signin");
+      //logout();
+      return
     }
     //const ext = authState.me.get().ext;
 
-    console.log('ext is',ext)
+    console.log('ext is to post is',ext)
 
     const getConvos = await axios.post(
       "http://localhost:3000/api/getConversations",
-      { ext: ext },
+      { ext: ext.toString() },
       {
         headers: {
           "content-type": "application/json",
         },
       }
     );
+
+    console.log("resp", getConvos)
 
     if(getConvos.status == 200){
     console.log('returning convos: ', JSON.stringify(getConvos.data))

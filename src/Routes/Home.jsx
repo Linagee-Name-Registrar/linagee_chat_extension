@@ -7,13 +7,13 @@ const Home = () => {
   const navigate = useNavigate();
   
   const goTo = ()=>{
-    navigate('/');
+    navigate('/messages',{ replace: true });
   }
   const location = useLocation();
 
   const goTo2 = ()=>{
     console.log("jome loc", location)
-    navigate('/messages', { replace: true });
+    navigate('/chat', { replace: true });
   }
 
     return (
@@ -24,6 +24,10 @@ const Home = () => {
       </h1>
       <div onClick={goTo2}  className="login">
         Logout
+
+      </div>
+      <div onClick={goTo}  className="login">
+        messages
 
       </div>
       <h1>

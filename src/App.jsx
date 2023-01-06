@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Login from './Routes/Login';
 import Home from './Routes/Home';
@@ -43,7 +43,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
         <CssBaseline />
-        <MemoryRouter>
+        <HashRouter>
             <Routes>
             {/* <AuthProvider> */}
                 {/* UnAuthenticated */}
@@ -55,7 +55,7 @@ function App() {
                 <Route path="/chat" element={<Chat />} />
             {/* </AuthProvider> */}
             </Routes>
-        </MemoryRouter>
+        </HashRouter>
         </ThemeProvider>
 
 

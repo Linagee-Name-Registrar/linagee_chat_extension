@@ -20,6 +20,7 @@ import { useHookstate } from '@hookstate/core';
 import store from '../Utils/store';
 import Button from '@mui/material/Button';
 import { CreateConversation, GetConversations } from '../Utils/Conversations';
+import { useAuthState } from '../Contexts/AuthStore';
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -64,13 +65,29 @@ const CssTextField = styled(TextField)({
 
 
 
-const SearchContainer = (props) => {
-  const { data } = props;
-  console.log("props is" , data)
+const SearchContainer = () => {
+  //const { data } = props;
+  //console.log("props is" , data)
   //const loggedIn = true;
   //const ext = "7f615e26-dc9a-4ace-bdc8-0cbb930b53ec"
   //console.log("props are", loggedIn, ext )
   const navigate = useNavigate();
+
+  const [data, setUserData] = useState();
+  
+
+  const authState = useAuthState();
+  console.log("messages search authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
+
+
+  useEffect(() => {
+    if(authState){
+      var user = {loggedIn: authState.isLoggedIn.get(),ext: (authState.me.get()).ext}
+      console.log("use effect yuser", user);
+      setUserData(user)
+    }
+
+  }, [authState])
 
   
 
@@ -160,7 +177,7 @@ const SearchContainer = (props) => {
       options={options.map((option) => option.primary)}
       renderInput={(params) => <CssTextField {...params} label="Search" size="small" style={{ width: 125, height: 35 }}/>}
     />
-    <Button onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
+    <Button style={{ width: 35, height: 35 }} onClick={handleSetMessage} ><img className="send-button" src={"send2.png"}/></Button>
     {/* <TextField 
         id="outlined-basic" 
         label="Outlined" 

@@ -1,41 +1,41 @@
-{conversations && conversations.length > 0 &&(
-    <div className="test">
-    
-        <div className="spacer"></div>
+
+      <div className="spacer"></div>
+      
+      {(conversations.convos).map(product => (
         
-          {conversations.map(product => (
-        <div>
-          
-          <div onClick={goTo}>
-          <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
-            <ListItemButton>
+    <div>
+      prodf
+      {product}
+      <div onClick={goTo}>
+      <ListItem sx={{height:'fit-content'}} alignItems="flex-start" component="div" >
+        <ListItemButton>
 
 <ListItemAvatar>
-    <Avatar alt="Travis Howard"/>
+<Avatar alt="Travis Howard"/>
 </ListItemAvatar>
 <ListItemText
-    primary={product.roomId}
-    secondary={
-    <React.Fragment className="list-text">
-        <Typography
-        sx={{ display: 'inline' }}
-        component="span"
-        variant="body2"
-        // color="text.primary"
-        >
-        to Scott, Alex, Jennifer
-        </Typography>
-        {product.roomName}
-        {/* {(product.secondary).slice(0, 14)+'...'} */}
-    </React.Fragment>
-    }
+primary={((product.userReference)[1]).primary}
+//primary={product}
+secondary={
+<React.Fragment className="list-text">
+    <Typography
+    sx={{ display: 'inline' }}
+    component="span"
+    variant="body2"
+    // color="text.primary"
+    >
+    {(((product.userReference)[1]).addr).slice(0, 21)+'...'}
+    </Typography>
+    
+    {/* {(product.secondary).slice(0, 14)+'...'} */}
+</React.Fragment>
+}
 />
 </ListItemButton>
 </ListItem>
 <Divider />
-          </div>
-        </div>
-      ))}
-      
       </div>
-      )}
+    </div>
+  ))}
+  
+  

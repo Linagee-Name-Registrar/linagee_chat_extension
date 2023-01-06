@@ -21,6 +21,8 @@ import store from '../Utils/store';
 import Button from '@mui/material/Button';
 import { CreateConversation, GetConversations } from '../Utils/Conversations';
 import { useAuthState } from '../Contexts/AuthStore';
+import { useMesState, setMes } from '../Contexts/MessageStore';
+import axios from 'axios';
 
 function listFun(props) {
     //create a new array by filtering the original array
@@ -74,7 +76,7 @@ const SearchContainer = () => {
   const navigate = useNavigate();
 
   const [data, setUserData] = useState();
-  
+  const [rec, setRec] = useState();
 
   const authState = useAuthState();
   console.log("messages search authstate is", authState.isLoggedIn.get(), (authState.me.get()).ext);
@@ -137,13 +139,41 @@ const SearchContainer = () => {
     //messages.set(selectedMessages);
     console.log("person value is", personvalue);
     console.log("setting message in search list");
-    if(personvalue){
-      await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
+    if(personvalue && data.ext){
+      //var res = await CreateConversation(data.loggedIn, data.ext, personvalue.toString());
+      const toSend = { ext: data.ext, otherPrimary: personvalue.toString() }
+   
+
+      axios.post(
+        "http://localhost:3000/api/createConversation",
+        { toSend },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      ).then(response => {
+        console.log("axios returned creation", response.data)
+        setRec(response.data)
+      } );
+      //setMes(res.roomId, )
       //await GetConversations(data.loggedIn, data.ext);
-      goTo();
+      //goTo();
     }
 
   }
+
+  useEffect(() =>{
+    if(rec){
+      if(rec.convos){
+        var convos = JSON.stringify(rec.convos)
+        var rid = (JSON.parse(convos)).roomId
+        setMes(rid, personvalue.toString());
+        navigate('/chat')
+      }
+    }
+
+  },[rec])
 
 
   
